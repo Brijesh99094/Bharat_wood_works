@@ -1,0 +1,60 @@
+{% extends 'inventory/main.html' %}
+{% load mathfilters  %}
+{% block content %}
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"><a style="color: black;" href="{% url 'Admin_dashboard' %}" ><i class="fa  fa-chevron-circle-left fa-6" aria-hidden="true" ></i></a> {{ cst.customer_name }}'s &nbsp; Details</h1>
+    </div>
+    {% include 'flash/_flash_messages.html' %}
+    
+    <table class="table  table-borderless" data-toggle="table" data-search="true" data-show-toggle="true"
+      data-show-fullscreen="true" data-show-columns="true">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>DEALER</th>
+          <th>PLANT</th>
+          <th>PRODUCT</th>
+          <th>DISPATCH</th>
+          <th>COLLECTION</th>
+          <th>SHORTAGE</th>
+        </tr>
+      </thead>
+      <tbody>
+            {% if items %}
+            
+              {% for dis in d1 %}
+              <tr>
+                    <td><a href="{% url 'collection' dis.id %}">{{ dis.date }}</a></td>
+                    <td>{{ dis.dealer }}</td>
+                    <td>{{ dis.plant }}</td>
+                    {% for item,qty in d %}
+                    {% if dis == item.dispatch %}
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        <td>{{ item.product }}</td>
+                        <td>{{ item.qty }}</td>
+                        <td>{{ qty }}</td>
+                        <td>{{ item.qty|sub:qty }}</td>
+                      </tr>
+                    {% endif %}
+                  
+                    {% endfor %}
+              </tr>
+                {% endfor %}
+              
+            <!-- Modal Edit Product-->
+            {% else %}
+            <tr>No Products Added yet</tr>
+            {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

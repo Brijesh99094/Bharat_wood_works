@@ -1,0 +1,364 @@
+{% extends 'inventory/dashboard.html' %}
+{% block Content_Admin %}
+
+
+ <div
+     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+     <h1 class="h2">Purchase</h1>
+ </div>
+ <nav>
+     <div class="nav nav-tabs nav-fill justify-content-center" id="nav-tab" role="tablist">
+         <a class="nav-item nav-link active rounded-0" id="nav-Raw-tab" data-toggle="tab"
+             href="#nav-Raw" role="tab" aria-controls="nav-Raw" aria-selected="true">Despatch</a>
+         <a class="nav-item nav-link rounded-0" id="nav-packing-tab" data-toggle="tab"
+             href="#nav-packing" role="tab" aria-controls="nav-packing"
+             aria-selected="false">Collection</a>
+     </div>
+ </nav>
+ <!--All tab-->
+ <div class="tab-content mt-3" id="nav-tabContent">
+     <!--Despatch tab-->
+     <div class="tab-pane fade show active" id="nav-Raw" role="tabpanel"
+         aria-labelledby="nav-Raw-tab">
+         <form>
+             <div class="form-row">
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Date</label>
+                     <input type="date" class="form-control" id="validationCustom01" name="date"
+                         required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">LR. No</label>
+                     <input type="text" class="form-control" id="validationCustom01" name="LR"
+                         required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Weight</label>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Weight" required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Quantity</label>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Quantity" required>
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Truck
+                         Owner</label>
+                     <select class="custom-select" id="validationCustom04" name="Party" required>
+                         <option selected disabled value="">Choose...</option>
+                         <option>Alam Khan</option>
+                         <option>Amar Chowdhary</option>
+                     </select>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Truck
+                         No.</label>
+                     <input type="text" class="form-control" id="validationCustom01" name="Truck"
+                         required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Mobile
+                         No.</label>
+                     <input type="tel" class="form-control" id="validationCustom01" name="Mobile"
+                         required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Fret Charges
+                     </label>
+                     <span><i class="fas fa-rupee-sign"></i></span>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Fret Charges" required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Advance</label>
+                     <span><i class="fas fa-rupee-sign"></i></span>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Advance" required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Toll</label>
+                     <span><i class="fas fa-rupee-sign"></i></span>
+                     <input type="text" class="form-control" id="validationCustom01" name="Toll"
+                         required>
+                 </div>
+
+             </div>
+             <div class="form-row">
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Company</label>
+                     <select class="custom-select" id="validationCustom04" name="Company"
+                         required>
+                         <option>Bharat WoodWorks</option>
+                         <option>Bharat WoodWorks</option>
+                     </select>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">PVC Company</label>
+                     <select class="custom-select" id="validationCustom04" name="PVC" required>
+                         <option>Bhilosa-FDY</option>
+                         <option>RPL-POY</option>
+                     </select>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Pallets</label>
+                     <input type="number" class="form-control" id="validationCustom01"
+                         name="Pallets" required>
+                 </div>
+
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">PVC Type</label>
+                     <select class="custom-select" id="validationCustom04" name="PVC" required>
+                         <option>6</option>
+                         <option>7</option>
+                         <option>8</option>
+                         <option>9</option>
+                         <option>10</option>
+                         <option>11</option>
+                         <option>12</option>
+                     </select>
+                 </div>
+             </div>
+             <button class="btn btn-outline-danger mb-3 px-4" type="submit" name="action"
+                 value="signUp">Clear</button>
+             <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action"
+                 value="signUp">Add</button>
+         </form>
+         <div
+             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+         </div>
+         <h1 class="h2 mt-5">Recently Added</h1>
+         <div class="table-responsive">
+             <table class="table table-striped text-center table-borderless" data-toggle="table"
+                 data-detail-view="true" data-detail-view-by-click="true" data-show-toggle="true"
+                 data-detail-view-icon="false" data-detail-formatter="idDetailFormatter">
+                 <thead>
+                     <tr>
+                         <th>DATE</th>
+                         <th>AREA</th>
+                         <th>DEALER</th>
+                         <th>PARTY</th>
+                         <th>PALLETS</th>
+                         <th>TOP</th>
+                         <th>SADP</th>
+                         <th>DADP</th>
+                         <th>PVC</th>
+                         <th>REMOVE</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td>21-05-2020</td>
+                         <td>Surat</td>
+                         <td>Arati Synth 93747-39234</td>
+                         <td>Appex Sizer</td>
+                         <td>700</td>
+                         <td>300</td>
+                         <td>50</td>
+                         <td>950</td>
+                         <td>100</td>
+                         <td><span><button class="btn btn-outline-danger" data-toggle="modal"
+                                     data-target="#exampleModal"><i
+                                         class="fas fa-trash"></i></a></span></td>
+                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Delete
+                                             Entry</h5>
+                                         <button type="button" class="close" data-dismiss="modal"
+                                             aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                         </button>
+                                     </div>
+                                     <div class="modal-body">
+                                         Are you sure you want to delete this Record?<br>
+                                         <small>This action cannot be undone.</small>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button"
+                                             class="btn btn-danger">Confirm</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </tr>                     
+                 </tbody>
+             </table>
+         </div>
+     </div>
+     <!--Despatch tab end-->
+
+     <!--Collection tab-->
+     <div class="tab-pane fade" id="nav-packing" role="tabpanel"
+         aria-labelledby="nav-packing-tab">
+         <form>
+             <div class="form-row">
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Date</label>
+                     <input type="date" class="form-control" id="validationCustom01" name="date"
+                         required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">LR. No</label>
+                     <input type="text" class="form-control" id="validationCustom01" name="LR"
+                         required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">PVC Company</label>
+                     <select class="custom-select" id="validationCustom04" name="PVC" required>
+                         <option>Bhilosa-FDY</option>
+                         <option>RPL-POY</option>
+                     </select>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">PVC Type</label>
+                     <select class="custom-select" id="validationCustom04" name="PVC" required>
+                         <option>6</option>
+                         <option selected>7</option>
+                         <option>8</option>
+                         <option>8</option>
+                         <option>9</option>
+                         <option>10</option>
+                         <option>11</option>
+                         <option>12</option>
+                     </select>
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Truck
+                         Owner</label>
+                     <select class="custom-select" id="validationCustom04" name="Party" required>
+                         <option selected disabled value="">Choose...</option>
+                         <option>Alam Khan</option>
+                         <option>Amar Chowdhary</option>
+                     </select>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Truck
+                         No.</label>
+                     <input type="text" class="form-control" id="validationCustom01" name="Truck"
+                         required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Mobile
+                         No.</label>
+                     <input type="tel" class="form-control" id="validationCustom01" name="Mobile"
+                         required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Pallets</label>
+                     <input type="number" class="form-control" id="validationCustom01"
+                         name="Pallets" required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Advance</label>
+                     <span><i class="fas fa-rupee-sign"></i></span>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Advance" required>
+                 </div>
+                 <div class="col-sm-2 mb-3">
+                     <label for="validationCustom04" class="font-weight-bold">Labour</label>
+                     <span><i class="fas fa-rupee-sign"></i></span>
+                     <input type="text" class="form-control" id="validationCustom01"
+                         name="Labour" required>
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">Top</label>
+                     <input type="number" class="form-control" id="validationCustom01" name="Top"
+                         required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">SADP</label>
+                     <input type="number" class="form-control" id="validationCustom01"
+                         name="SADP" required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">DADP</label>
+                     <input type="number" class="form-control" id="validationCustom01"
+                         name="DADP" required>
+                 </div>
+                 <div class="col-sm-3 mb-3">
+                     <label for="validationCustom01" class="font-weight-bold">PVC</label>
+                     <input type="number" class="form-control" id="validationCustom01" name="PVC"
+                         required>
+                 </div>
+             </div>
+
+             <button class="btn btn-outline-danger mb-3 px-4" type="submit" name="action"
+                 value="signUp">Clear</button>
+             <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action"
+                 value="signUp">Add</button>
+         </form>
+         <div
+             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+         </div>
+         <h1 class="h2 mt-5">Recently Added</h1>
+         <div class="table-responsive">
+             <table class="table table-striped text-center table-borderless" data-toggle="table"
+                 data-detail-view="true" data-show-toggle="true" data-detail-view-by-click="true"
+                 data-detail-view-icon="false" data-detail-formatter="idDetailFormatter1">
+                 <thead>
+                     <tr>
+                         <th>DATE</th>
+                         <th>AREA</th>
+                         <th>DEALER</th>
+                         <th>PARTY</th>
+                         <th>PALLETS</th>
+                         <th>TOP</th>
+                         <th>SADP</th>
+                         <th>DADP</th>
+                         <th>PVC</th>
+                         <th>REMOVE</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td>21-05-2020</td>
+                         <td>Surat</td>
+                         <td>Arati Synth 93747-39234</td>
+                         <td>Appex Sizer</td>
+                         <td>700</td>
+                         <td>300</td>
+                         <td>50</td>
+                         <td>950</td>
+                         <td>100</td>
+                         <td><span><button class="btn btn-outline-danger" data-toggle="modal"
+                                     data-target="#exampleModal2"><i
+                                         class="fas fa-trash"></i></a></span></td>
+                         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Delete
+                                             Entry</h5>
+                                         <button type="button" class="close" data-dismiss="modal"
+                                             aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                         </button>
+                                     </div>
+                                     <div class="modal-body">
+                                         Are you sure you want to delete this Record?<br>
+                                         <small>This action cannot be undone.</small>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button"
+                                             class="btn btn-danger">Confirm</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </tr>                     
+                 </tbody>
+             </table>
+         </div>
+     </div>
+     <!--Collection tab end-->
+     {% endblock Content_Admin %}

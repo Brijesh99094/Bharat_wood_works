@@ -1,0 +1,166 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+
+
+{% include 'flash/_flash_messages.html' %}
+
+<!---<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Purchase Return Product</h1>
+    </div>
+    
+    <form method="POST">
+      {% csrf_token %}
+      <select name="purchase_return" hidden>
+        <option value="{{ pur1 }}" selected>{{ pur1 }}</option>
+      </select>
+      <div class="form-row">
+        <div class="col-sm-4 mb-3">
+          <label class="font-weight-bold">Product</label>
+          {{ purchase_return_product_form.product }}
+        </div>
+        <div class="col-sm-4 mb-3">
+          <label class="font-weight-bold">Quantity</label>
+          <input type="number" class="form-control" name="qty" required>
+        </div>
+        <div class="col-sm-4 mb-3">
+          <label class="font-weight-bold">Price</label>
+          <input type="number" class="form-control" name="price" required>
+        </div>
+      </div>
+      <button class="btn btn-outline-info mb-3 px-4" type="submit">Add</button>
+    </form>
+    <a href="{% url 'purchase'  %}" class="btn btn-outline-success mb-3 px-4" type="submit">Finish</a>
+  </div>
+</div>-->
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">All Purchase</h1>
+    </div>
+    <table class="table table-striped table-borderless" data-toggle="table" data-search="true" data-show-toggle="true"
+      data-show-fullscreen="true" data-show-columns="true">
+      <thead>
+        <tr>
+          <th>PRODUCT</th>
+          <th>QUANTITY</th>
+          <th>TOTAL RETURNED QUANTITY</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if items %}
+        {% for item,qty in d %}
+        <td>{{ item.product}}</td>
+        <td>{{ item.qty }}</td>
+        <td>{{ qty }}</td>
+        <td>
+
+          <!-- <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+              data-target="#deleteModal{{ item.id }}">
+              <i class="fas fa-trash"></i>
+            </button>  -->
+          <a href="{% url 'update_pur_ret_product' item.id  %}" class="btn btn-outline-info">
+            <i class="fas fa-edit"></i>
+          </a>
+        </td>
+        </tr>
+
+        <!-- Modal Delete Purchase-->
+        <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <form method="POST" action="#">
+              {% csrf_token %}
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this Item?<br>
+                  Item Name : <b>{{ item.product}}</b>
+                  Item Quantity : <b>{{ item.qty }}</b>
+                  Item Price : <b>{{ item.price }}</b>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <p></p>
+                  <input type="submit" value="Delete" class="btn btn-danger">
+                </div>
+              </div>
+          </div>
+
+          </form>
+        </div>
+        <!-- Modal Edit Product-->
+        <div id="modaledit{{ item.id }}" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form method="POST" action="{% url 'update_pur_ret_product' item.id %}">
+                  {% csrf_token %}
+                  <select name="purchase_return" hidden>
+                    <option value="{{ pur1 }}" selected>{{ pur1 }}</option>
+                  </select>
+                  <div class="form-row">
+                    <div class="col-sm-4 mb-3">
+                      <label class="font-weight-bold">Product</label>
+                      {{ purchase_return_product_form.product }}
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                      <label class="font-weight-bold">Quantity</label>
+                      <input type="number" class="form-control" name="qty" required>
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                      <label class="font-weight-bold">Price</label>
+                      <input type="number" class="form-control" name="price" required>
+                    </div>
+                  </div>
+                  <button class="btn btn-outline-info mb-3 px-4" type="submit">Add</button>
+                </form>
+                <!--<form method="POST" action="{% url 'pur_return_product' item.id %}">{% csrf_token %}
+                  <div class="form-row">
+                    <div class="col-sm-4 mb-3">
+                      <label class="font-weight-bold">Name</label>
+                      <input type="text" class="form-control" name="product" value="{{ item.product }}" readonly
+                        required>
+                    </div>
+                    <div class="col-sm-4 mb-3">
+                      <label class="font-weight-bold">Qty</label>
+                      <input type="text" class="form-control" name="qty" value="{{ item.qty }}" required>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-outline-success mb-3 px-4" value="Update">
+                </form>-->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <tr>No Products Added yet</tr>
+        {% endif %}
+      </tbody>
+    </table>
+    <a class="btn btn-outline-success" href="{% url 'updatepurchasereturn' pur1.id %}">Back</a>
+  </div>
+</div>
+
+{% endblock %}

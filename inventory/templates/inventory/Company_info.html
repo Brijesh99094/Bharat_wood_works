@@ -1,0 +1,76 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Company Details</h1>
+      </div>
+      <form method="POST">{% csrf_token %}
+        <div class="container">
+          {% include 'flash/_flash_messages.html' %}
+        </div>
+        <div class="form-row">
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom01" class="font-weight-bold">Company_name</label>
+            <input type="text" class="form-control" name="company_name" value="{{ acc.username }}" readonly>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom04" class="font-weight-bold">Email</label>
+            <select name="account" class="custom-select">
+              <option value="{{ acc.id }}" selected>{{ acc }}</option>
+            </select>
+
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom04" class="font-weight-bold">date_joined</label>
+            {{ form.date_joined }}
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom04" class="font-weight-bold">GST_no.</label>
+            <input type="text" name="gst_no" id="" pattern="[0-9,A-Z]{15}" class="form-control">
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom01" class="font-weight-bold">Address</label>
+            <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label for="validationCustom01" class="font-weight-bold">Area</label>
+            {{ form.area }}
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 mb-3">
+              <label for="validationCustom04" class="font-weight-bold">Phone</label>
+              
+              <input type="tel" class="form-control"  name="phone" pattern="[0-9]{10}">
+            </div>
+          </div>
+       <!-- {% for field in form %}
+         
+    <p>
+        {% for error in field.errors %}
+            <small style="color: red;">{{ field.label_tag }}  {{ field }} {{ error }}</small>
+        {% endfor %}
+    </p>
+    {% endfor %}-->
+        <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action" value="signUp">Add</button>
+        <button class="btn btn-outline-danger mb-3 px-4" type="reset" name="action" value="">Clear</button>
+        
+      </form>
+    </div>
+  </div>
+
+  {% endblock %}
+
+

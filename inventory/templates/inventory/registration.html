@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">{% csrf_token %}
+    {{ registration_form.username.label}}
+    {{ registration_form.username }}
+
+    {{ registration_form.email.label }}
+    {{ registration_form.email }}
+
+    {{registration_form.password1.label}}
+    {{ registration_form.password1 }}
+
+    {{ registration_form.password2.label }}
+    {{ registration_form.password2 }}
+
+    {{ registration_form.role.label }}
+    {{ registration_form.role }}
+
+    {{ registration_form.state.label }}
+    {{ registration_form.state }}
+
+    {{registration_form.city.label}}
+    {{ registration_form.city }}
+
+    {{ registration_form.address.label }}
+    {{ registration_form.address }}
+
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>

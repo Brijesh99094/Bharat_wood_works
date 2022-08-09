@@ -1,0 +1,23 @@
+{% if messages %}
+
+{% for message in messages %}
+
+<div id="msg" class="alert {{message.tags}}" role='alert' >
+
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<script>
+    window.setTimeout(function() {
+        $(".alert").slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 3000);
+</script>
+    
+{% endfor %}
+
+{% endif %}

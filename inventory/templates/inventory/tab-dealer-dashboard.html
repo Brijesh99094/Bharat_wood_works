@@ -1,0 +1,241 @@
+<div class="tab-pane fade show active" id="v-tabs-home" role="tabpanel" aria-labelledby="v-tabs-home-tab">
+
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Dashboard</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary">Excel</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary">PDF</button>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span><i class="fas fa-calendar-alt"></i></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Today</a>
+            <a class="dropdown-item" href="#">This Month</a>
+            <a class="dropdown-item" href="#">This Year</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-deck text-center justify-content-center">
+      <div class="card mb-3" style="max-width: 20rem; background-color: #4cd4c7;">
+        <div class="card-header">
+          <h3 class="card-title">Despatch
+          </h3>
+        </div>
+        <div class=" card-body">
+          <h4 class="card-text">15000</h4>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 20rem; background-color: #7abecc;">
+        <div class="card-header">
+          <h3 class="card-title">Collection</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="card-text">5000</h4>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 20rem; background-color: #7cd1c0;">
+        <div class="card-header">
+          <h3 class="card-title">Shortage</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="card-text">10000</h4>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="nav nav-tabs nav-fill justify-content-center" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active rounded-0" id="nav-Opening-tab" data-toggle="tab" href="#nav-Opening"
+          role="tab" aria-controls="nav-Opening" aria-selected="true">Opening</a>
+        <a class="nav-item nav-link rounded-0" id="nav-Despatch-tab" data-toggle="tab" href="#nav-Despatch"
+          role="tab" aria-controls="nav-Despatch" aria-selected="false">Despatch</a>
+        <a class="nav-item nav-link rounded-0" id="nav-Collection-tab" data-toggle="tab" href="#nav-Collection"
+          role="tab" aria-controls="nav-Collection" aria-selected="false">Collection</a>
+        <a class="nav-item nav-link rounded-0" id="nav-Closing-tab" data-toggle="tab" href="#nav-Closing"
+          role="tab" aria-controls="nav-Closing" aria-selected="false">Closing</a>
+        <a class="nav-item nav-link rounded-0" id="nav-Shortage-tab" data-toggle="tab" href="#nav-Shortage"
+          role="tab" aria-controls="nav-Shortage" aria-selected="false">Shortage</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-Opening" role="tabpanel" aria-labelledby="nav-Opening-tab">
+        <div class="table-responsive">
+          <table class="table table-striped text-center table-borderless" data-toggle="table"
+            data-pagination="true" data-page-size="25" data-search="true" data-show-toggle="true"
+            data-show-fullscreen="true" data-show-columns="true" data-detail-view="true"
+            data-detail-view-by-click="true" data-detail-view-icon="false"
+            data-detail-formatter="idDetailFormatter">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>AREA</th>
+                <th>PARTY</th>
+                <th>PALLETS</th>
+                <th>TOP</th>
+                <th>SADP</th>
+                <th>DADP</th>
+                <th>PVC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21-05-2020</td>
+                <td>Surat</td>
+                <td>Devangi Tex</td>
+                <td>20</td>
+                <td>20</td>
+                <td>540</td>
+                <td>2430</td>
+                <td>220</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-Despatch" role="tabpanel" aria-labelledby="nav-Despatch-tab">
+        <div class="table-responsive">
+          <table class="table table-striped text-center table-borderless" data-toggle="table"
+            data-pagination="true" data-page-size="25" data-search="true" data-show-toggle="true"
+            data-show-fullscreen="true" data-show-columns="true">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>AREA</th>
+                <th>PARTY</th>
+                <th>PALLETS</th>
+                <th>TOP</th>
+                <th>SADP</th>
+                <th>DADP</th>
+                <th>PVC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21-05-2020</td>
+                <td>Surat</td>
+
+                <td>Appex Sizer</td>
+                <td>700</td>
+                <td>300</td>
+                <td>50</td>
+                <td>950</td>
+                <td>100</td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-Collection" role="tabpanel" aria-labelledby="nav-Collection-tab">
+        <div class="table-responsive">
+          <table class="table table-striped text-center table-borderless" data-toggle="table"
+            data-pagination="true" data-page-size="25" data-search="true" data-show-toggle="true"
+            data-show-fullscreen="true" data-show-columns="true">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>AREA</th>
+
+                <th>PARTY</th>
+                <th>PALLETS</th>
+                <th>TOP</th>
+                <th>SADP</th>
+                <th>DADP</th>
+                <th>PVC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21-05-2020</td>
+                <td>Surat</td>
+
+                <td>Appex Sizer</td>
+                <td>700</td>
+                <td>300</td>
+                <td>50</td>
+                <td>950</td>
+                <td>100</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-Closing" role="tabpanel" aria-labelledby="nav-Closing-tab">
+        <div class="table-responsive">
+          <table class="table table-striped text-center table-borderless" data-toggle="table"
+            data-pagination="true" data-page-size="25" data-search="true" data-show-toggle="true"
+            data-show-fullscreen="true" data-show-columns="true">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>AREA</th>
+
+                <th>PARTY</th>
+                <th>PALLETS</th>
+                <th>TOP</th>
+                <th>SADP</th>
+                <th>DADP</th>
+                <th>PVC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21-05-2020</td>
+                <td>Surat</td>
+
+                <td>Appex Sizer</td>
+                <td>700</td>
+                <td>300</td>
+                <td>50</td>
+                <td>950</td>
+                <td>100</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-Shortage" role="tabpanel" aria-labelledby="nav-Shortage-tab">
+        <div class="table-responsive">
+          <table class="table table-striped text-center table-borderless" data-toggle="table"
+            data-pagination="true" data-page-size="25" data-search="true" data-show-toggle="true"
+            data-show-fullscreen="true" data-show-columns="true">
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>AREA</th>
+
+                <th>PARTY</th>
+                <th>PALLETS</th>
+                <th>TOP</th>
+                <th>SADP</th>
+                <th>DADP</th>
+                <th>PVC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21-05-2020</td>
+                <td>Surat</td>
+
+                <td>Appex Sizer</td>
+                <td>700</td>
+                <td>300</td>
+                <td>50</td>
+                <td>950</td>
+                <td>100</td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

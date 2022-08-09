@@ -1,0 +1,185 @@
+{% load mathfilters %}
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        
+        @page{
+            margin:1cm;
+            size: a4;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box table tr td.center {
+            text-align: center;
+        }
+
+        .invoice-box table tr td.right {
+            text-align: right;
+        }
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+           
+        }
+
+        .invoice-box table tr.heading td {
+            background: #eee;
+            border-bottom: 1px solid #eee;
+            font-weight: bold;
+          
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-box table tr.item.last td {
+            border-bottom: none;
+        }
+
+        .invoice-box table tr.total td.right {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top" style="border:1px solid darkslategray ;">
+                <td colspan="2">
+                    <table>
+                        <tr style="background-color:darkslategray; color: floralwhite; ">
+                            <td class="title">
+                                <img src="http://localhost:8000{% static 'images/Group 81.png' %}"
+                                    style="width: 225px; height: 70px;" />
+                            </td>
+
+                            <td class=" right">
+                                Invoice No: {{ sales_data.id }}<br />
+                                Date: {{ sales_data.sales_date }}<br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr >
+                            <td>
+                                Plot No. 285,Station Road,<br />
+                                Ghatkopar(E),<br />
+                                Mumbai - 400075.
+                            </td>
+
+                            <td class="right">
+                                {{ sales_data.sales_user }}<br />
+                                {{sales_data.sales_user.address }}<br />
+                                {{ sales_data.sales_user.account }}<br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table style="margin-top: 10px;">
+            <tr class="heading" style="background-color:darkslategray; color: floralwhite;  ; ">
+                <td class="center">Warehouse</td>
+                <td class="center">Truck Owner</td>
+                <td class="center">Truck No.</td>
+                <td class="center">Weight</td>
+            </tr>
+
+            <tr class="details">
+                <td class="center">{{sales_data.warehouse}}</td>
+                <td class="center">{{sales_data.truck_owner}}</td>
+                <td class="center">{{sales_data.truck_no}}</td>
+                <td class="center">{{sales_data.weight}}</td>
+            </tr>
+        </table>
+
+        <table style="margin-top: 10px;">
+            <tr class="heading" style="background-color:darkslategray; color: floralwhite; ">
+                <td class="center">Item</td>
+                <td class="center">Qty</td>
+                <td class="center">Price</td>
+                <td class="center">Total</td>
+            </tr>
+            {% for item in shp %}
+            <tr class="item">
+                <td class="center">{{ item.product }}</td>
+                <td class="center"> {{ item.qty }}</td>
+                <td class="center">{{ item.price|intcomma }}</td>
+                <td class="center">{{ item.qty|mul:item.price |intcomma }}</td>
+            </tr>
+            {% endfor %}
+          
+            <tr class="total">
+                <td class="right" colspan="3" style="padding-right : 35px;"><strong>Tax :</strong></td>
+                
+                <td class="right"  style="padding-right : 35px;"><strong>{{ total|mul:0.25 |intcomma }} </strong></td>
+            </tr>
+            
+            <tr class="total">
+                <td class="right" colspan="3" style="padding-right : 35px;background-color:#eee;"><strong>Total :</strong></td>
+               
+                {% with tax=total|mul:0.25 %}
+                <td class="right"  style="padding-right : 35px;background-color:#eee;"><strong>{{ total|add:tax |intcomma }}</strong></td>
+                {% endwith %}
+            </tr>
+            
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+
+

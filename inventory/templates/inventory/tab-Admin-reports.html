@@ -1,0 +1,254 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<body onload="intialLoad()" >
+
+
+    <div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Reports</h1>
+                </div>
+                <form method="POST">{% csrf_token %}
+                    <div class="container">
+                        {% include 'flash/_flash_messages.html' %}
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-4 mb-3">
+                            <label for="validationCustom01" class="font-weight-bold">Select Type:</label>
+                            <select class="custom-select" onchange="check();" id="selectType" name="role" required>
+                                <option value="Please_select" selected disabled>---Select---</option>
+                                <option value="stock">Stock</option>
+                                <option value="purchase">Purchase</option>
+                                <option value="sale">Sale</option>
+                                <option value="purchase_return">Purchase Return</option>
+                                <option value="sales_return">Sales Return</option>
+                                <option value="dispatch">Dispatch</option>
+                                <option value="collection">Collection</option>
+                                <option value="warehouse_to_plant">Warehouse To Plant</option>
+                                <option value="plant_stock">Plant Stock</option>
+                            </select>
+                        </div>
+                        
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-sm-3 mb-3" id="date_from">
+                            <label class="font-weight-bold">Date (From)</label>
+                            <input type="date" class="form-control" name="date_from" onchange="checkDate();">
+                        </div>
+                        <div class="col-sm-3 mb-3" id="date_to">
+                            <label class="font-weight-bold">Date (To)</label>
+                            <input type="date" class="form-control" name="date_to">
+                        </div>
+                        <div class="col-sm-3 mb-3" id="warehouse">
+                            <label class="font-weight-bold">Warehouse</label>
+                            <select name="warehouse" id="" class="custom-select" >
+                                <option value="">----------</option>
+                                {% for war in ware %}
+                                <option value="{{ war.id }}"> {{ war }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="supplier">
+                            <label class="font-weight-bold">Supplier</label>
+                            <select name="supplier" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in supp %}
+                                <option value="{{ war.id }}"> {{ war }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="dealer">
+                            <label class="font-weight-bold">Dealer</label>
+                            <select name="dealer" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in dealer %}
+                                <option value="{{ war.id }}"> {{ war }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="customer">
+                            <label class="font-weight-bold">Customer</label>
+                            <select name="customer" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in cst %}
+                                <option value="{{ war.id }}"> {{ war.customer_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="plant">
+                            <label class="font-weight-bold">Plant</label>
+                            <select name="plant" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in plt %}
+                                <option value="{{ war.id }}"> {{ war }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="product">
+                            <label class="font-weight-bold">Product</label>
+                            <select name="product" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in prod %}
+                                <option value="{{ war.id }}"> {{ war }} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-3 mb-3" id="truck_owner">
+                            <label class="font-weight-bold">Truck Owner</label>
+                            <select name="truck_owner" id="" class="custom-select">
+                                <option value="">----------</option>
+                                {% for war in owner %}
+                                <option value="{{ war.id }}"> {{ war }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+                    <button  class="btn btn-outline-success mb-3 px-4" type="submit" name="print"
+                       >Generate report</button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function intialLoad() {
+            console.log("HEllo");
+            document.getElementById("date_from").style.display = "none";
+            document.getElementById("date_to").style.display = "none";
+            document.getElementById("warehouse").style.display = "none";
+            document.getElementById("supplier").style.display = "none";
+            document.getElementById("dealer").style.display = "none";
+            document.getElementById("customer").style.display = "none";
+            document.getElementById("plant").style.display = "none";
+            document.getElementById("product").style.display = "none";
+            document.getElementById("truck_owner").style.display = "none";
+            document.getElementById("truck_no").style.display = "none";
+
+        }
+        function checkDate(){
+           ///
+
+        }
+
+        function check() {
+            var dropdown = document.getElementById("selectType");
+            var current_value = dropdown.options[dropdown.selectedIndex].value;
+            console.log(current_value);
+
+            if (current_value == "stock") {
+                document.getElementById("date_from").style.display = "none";
+                document.getElementById("date_to").style.display = "none";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "none";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "none";
+                document.getElementById("product").style.display = "block";
+                document.getElementById("truck_owner").style.display = "none";
+                document.getElementById("truck_no").style.display = "none";
+            } else if (current_value == "purchase") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "block";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "none";
+                document.getElementById("product").style.display = "block";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "sale") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "block";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "none";
+                document.getElementById("product").style.display = "none";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "purchase_return") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "block";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "none";
+                document.getElementById("product").style.display = "none";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "sales_return") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "block";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "none";
+                document.getElementById("product").style.display = "none";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "dispatch") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "none";
+                document.getElementById("supplier").style.display = "none";
+                document.getElementById("dealer").style.display = "block";
+                document.getElementById("customer").style.display = "block";
+                document.getElementById("plant").style.display = "block";
+                document.getElementById("product").style.display = "block";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "collection") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "none";
+                document.getElementById("supplier").style.display = "none";
+                document.getElementById("dealer").style.display = "block";
+                document.getElementById("customer").style.display = "block";
+                document.getElementById("plant").style.display = "block";
+                document.getElementById("product").style.display = "none";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+            } else if (current_value == "warehouse_to_plant") {
+                document.getElementById("date_from").style.display = "block";
+                document.getElementById("date_to").style.display = "block";
+                document.getElementById("warehouse").style.display = "block";
+                document.getElementById("supplier").style.display = "none";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "block";
+                document.getElementById("product").style.display = "block";
+                document.getElementById("truck_owner").style.display = "block";
+                document.getElementById("truck_no").style.display = "block";
+                
+
+        
+            } else if (current_value == "plant_stock") {
+                document.getElementById("date_from").style.display = "none";
+                document.getElementById("date_to").style.display = "none";
+                document.getElementById("warehouse").style.display = "none";
+                document.getElementById("supplier").style.display = "none";
+                document.getElementById("dealer").style.display = "none";
+                document.getElementById("customer").style.display = "none";
+                document.getElementById("plant").style.display = "block";
+                document.getElementById("product").style.display = "block";
+                document.getElementById("truck_owner").style.display = "none";
+                document.getElementById("truck_no").style.display = "none";
+            }
+        }
+    </script>
+</body>
+{% endblock %}

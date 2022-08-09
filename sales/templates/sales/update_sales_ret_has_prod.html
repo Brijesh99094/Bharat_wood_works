@@ -1,0 +1,38 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Update sales return product</h1>
+        </div>
+        {% include 'flash/_flash_messages.html' %}
+        <form method="POST">
+            {% csrf_token %}
+            <select name="sales_return" hidden>
+                <option value="{{ pr.id }}" selected>{{ pr.id }}</option>
+            </select>
+            <div class="form-row">
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Product</label>
+                    {{ product_form.product }}
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Quantity</label>
+                    <input type="number" class="form-control" min="1" name="qty" required>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Price</label>
+                    <input type="number" class="form-control" name="price" required>
+                </div>
+            </div>
+            <button class="btn btn-outline-info mb-3 px-4" type="submit">Return</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

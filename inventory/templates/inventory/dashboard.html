@@ -1,0 +1,28 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+
+
+{% block content %}     
+
+    <nav class="navbar navbar-light border-0">
+        <img src="{% static 'images/Group 81.png' %}" alt="logo" style="width:225px; height:72px;">
+        <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav px-3">
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-light px-3 py-2" type="submit">LOGOUT</button>
+            </form>
+        </ul>
+    </nav>
+    {% include 'inventory/Admin_navbar.html' %}
+     
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    {% block Content_Admin %}
+
+                    {% endblock Content_Admin %}
+        </main>
+
+{% endblock %} 

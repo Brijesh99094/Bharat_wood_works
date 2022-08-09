@@ -1,0 +1,106 @@
+{% extends 'inventory/main.html' %}
+    
+{% block content %}
+    
+        <div class="card mb-4">
+            <div class="card-body">
+                {% include 'flash/_flash_messages.html' %}
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Plant Stock</h1>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-sm-4 mb-3">
+                            <label class="font-weight-bold">Product</label>
+                            {{ stockform.product }}
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label class="font-weight-bold">Plant</label>
+                            {{ stockform.plant }}
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <label class="font-weight-bold">Quantity</label>
+                            <input type="number" class="form-control" min="0" name="qty" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-success mb-3 px-4" type="submit">Add</button>
+                    <button class="btn btn-outline-danger mb-3 px-4" type="reset">Clear</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Plant Stock details</h1>
+                </div>
+                <table class="table table-striped text-center table-borderless">
+                    <thead>
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>PLANT</th>
+                            <th>QUANTITY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                        {% for stock in s %}
+                        <tr>
+                            <td>{{ stock.product }}</td>
+                            <td>{{ stock.plant}}</td>
+                            <td>{{ stock.qty }}</td>
+                           
+                            
+                        </tr>
+                        <!-- Modal Update Stock-->
+                        <div id="modaledit{{ s.id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Stock</h4>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST GET">
+                                            {% csrf_token %}
+                                            <div  class="form-row">
+                                                <div class="col-sm-4 mb-3">
+                                                    <label class="font-weight-bold">Product</label>
+                                                    {{ stockform.product }}
+                                                </div>
+                                                <div class="col-sm-4 mb-3">
+                                                    <label class="font-weight-bold">Warehouse</label>
+                                                    {{ stockform.plant }}
+                                                </div>
+                                                <div class="col-sm-4 mb-3">
+                                                    <label class="font-weight-bold">Quantity</label>
+                                                    <input type="text" class="form-control" name="qty"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-outline-success mb-3 px-4"
+                                                type="submit">Update Stock</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    
+    {% endblock %}

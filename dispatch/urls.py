@@ -1,0 +1,30 @@
+from . import views
+from django.urls import path
+
+urlpatterns =[
+    path('Dispatch/',views.dispatch,name='dispatch'),
+    path('Dis_delete/<id>',views.del_dispatch,name='del_dispatch'),
+    path('Dis_update/<id>',views.update_dispatch,name='update_dispatch'),
+    path('Dis_update_detail/<id>',views.update_dispatch_detail,name='update_dispatch_detail'),
+    path('Collection/<id>',views.collection,name='collection'),
+    path('Dispatch_detail/<id>',views.dispatch_detail,name='dispatch_detail'),
+    path('Collection_detail/<id>',views.collection_detail,name='collection_detail'),
+    path('Collection_has_product/<id>',views.col_has_product,name='col_has_product'),
+    path('warehouse_to_plant/',views.warehouse_to_plant,name='warehouse_to_plant'),
+    path('Update_warehouse_to_plant/<id>',views.Update_warehouse_to_plant,name='Update_warehouse_to_plant'),
+    path('warehouse_to_plant_product_detail/<id>',views.warehouse_to_plant_product_detail,name='warehouse_to_plant_product_detail'),
+    path('update_warehouse_to_plant_product_detail/<id>',views.update_warehouse_to_plant_product_detail,name='update_warehouse_to_plant_product_detail'),
+    path('Plant/<id>',views.plant,name='plant'),
+    path('PlantStock/',views.plantstock,name='plantstock'),
+    path('Update_Plant/<id>',views.update_plant,name='update_plant'),
+    path('Delete_plant/<id>',views.delete_assigned_plant,name='delete_assigned_plant'),
+    path('Delete_wtp/<id>',views.Delete_wtp,name='Delete_wtp'),
+    path('deleteproduct_wtp/<id>',views.deleteproduct_wtp,name='deleteproduct_wtp'),
+    path('deleteproduct_wtp2/<id>',views.deleteproduct_wtp2,name='deleteproduct_wtp2'),
+    path('dis_list/<id>',views.dis_list,name='dis_list'),
+    path('update_collection/<id>',views.update_collection,name='update_collection'),
+    path('update_collection_detail/<id>',views.update_collection_detail,name='update_collection_detail'),
+    path('update_col_has_product/<id>',views.update_col_has_product,name='update_col_has_product'),
+    path('del_coll/<id>/',views.del_coll,name='del_coll'),
+    path('deleteproduct_dispatch/<id>',views.deleteproduct_dispatch,name='deleteproduct_dispatch'),
+]

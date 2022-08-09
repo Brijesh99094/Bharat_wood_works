@@ -1,0 +1,154 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2"> Update Purchase Return </h1>
+        </div>
+        {% include 'flash/_flash_messages.html' %}
+   <form method="POST">{% csrf_token %}
+    <div class="form-row">
+        <div class="col-sm-4 mb-3">
+            <label class="font-weight-bold">Date</label>
+           {{ form.purchase_return_date }}
+        </div>
+        <div class="col-sm-4 mb-3" >
+            <label class="font-weight-bold">Warehouse</label>
+            <div hidden> {{ form.warehouse }}</div>
+            <input type="text" class="form-control" value="{{ pd.warehouse }}" readonly>
+        </div>
+        <div class="col-sm-4 mb-3"  >
+            <label class="font-weight-bold">Supplier</label>
+            <div hidden>{{ form.supplier }}</div>
+            <input type="text" class="form-control" value="{{ pd.supplier }}"  readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4 mb-3">
+            <label class="font-weight-bold">Truck Owner</label>
+            {{ form.truck_owner }}
+        </div>
+        <div class="col-sm-4 mb-3">
+            <label class="font-weight-bold">Truck Number</label>
+            {{ form.truck_no }}
+        </div>
+        <div class="col-sm-4 mb-3">
+            <label class="font-weight-bold">Weight</label>
+            {{ form.weight }}
+        </div>
+       
+    </div>
+    <button class="btn btn-outline-danger mb-3 px-4" type="reset">Clear</button>
+    <button class="btn btn-outline-success mb-3 px-4" type="submit">Add</button>
+</form>
+</div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Products </h1> 
+        </div>
+<table class="table table-striped table-borderless" data-toggle="table" data-search="true"
+            data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true">
+    <thead>
+        <tr>
+            <th>PRODUCT</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if product_data %}
+        {% for item in product_data %}
+        <tr>
+            <td>{{ item.product}}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                    data-target="#deleteModal{{ item.id }}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+
+        <!-- Modal Delete Purchase-->
+        <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <form method="POST" action="{% url 'deletereturnproduct' item.id %}">
+                    {% csrf_token %}
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this Item?<br>
+                            Item Name : <b>{{ item.product}}</b><br>
+                            Item Quantity : <b>{{ item.qty }}</b><br>
+                            Item Price : <b>{{ item.price }}</b><br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <p></p>
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </div>
+                    </div>
+            </div>
+
+            </form>
+        </div>
+        <!-- Modal Edit Product
+        <div id="modaledit" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Product</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="#">{% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-sm-4 mb-3">
+                                    <label class="font-weight-bold">Name</label>
+                                    <input type="text" class="form-control" name="product_name" value="{{ product.product_name }}" required>
+                                </div>
+                                <div class="col-sm-4 mb-3">
+                                    <label class="font-weight-bold">Size</label>
+                                    <input type="text" class="form-control" name="size" value="{{ product.size }}" required>
+                                </div>
+                                <div class="col-sm-4 mb-3">
+                                    <label class="font-weight-bold">Unit</label>
+                                    <input type="text" class="form-control" name="unit" value="{{ product.unit }}" required>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-outline-success mb-3 px-4" value="Update">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>                  
+            </div>
+        </div>-->
+        {% endfor %}
+        {% else %}
+        <tr>No Products Added yet</tr>
+        {% endif %}
+
+    </tbody>
+</table>
+<a href="{% url 'update_return_product_detail' pd.id %}" class="btn btn-outline-success mb-3 px-4" >Edit product</a>
+</div>
+</div>
+
+
+{% endblock %}

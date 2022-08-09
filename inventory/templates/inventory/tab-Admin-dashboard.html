@@ -1,0 +1,45 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        {% include 'flash/_flash_messages.html' %}
+<h1 class="h2 ">Customers</h1>
+<hr>
+<div class="table-responsive">
+    <table class="table table-striped text-center table-borderless" data-toggle="table" data-pagination="true"
+        data-show-toggle="true" data-page-size="25" data-search="true" data-show-fullscreen="true"
+        data-show-columns="true">
+        <thead>
+            <tr>
+                <th>CUSTOMER NAME</th>
+                <th>EMAIL</th>
+                <th>PHONE</th>
+                <th>INFO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if c1 %}
+            {% for c in c1 %}
+            <tr id="user-{{user.id}}">
+                <td class="userName userData" name="username">{{ c.customer_name }}</td>
+                <td class="userEmail userData" name="email">{{ c.account }}</td>
+                
+                <td class="userRole userData" name="role">{{ c.phone }}</td>
+                <td><a href="{% url 'dis_list' c.id %}" class="btn btn-outline-info" ><i class="fas fa-clipboard"></i> </a></td>
+            </tr>
+             {% endfor %}
+             {% else %}
+                No Users
+             {% endif %}
+        </tbody>
+    </table>
+</div>
+    </div>
+    </div>
+
+
+{% endblock %}

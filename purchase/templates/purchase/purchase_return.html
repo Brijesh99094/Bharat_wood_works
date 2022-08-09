@@ -1,0 +1,103 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Purchase return </h1>
+        </div>
+        <table class="table table-striped table-borderless">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>WAREHOUSE</th>
+                    <th>SUPPLIER</th>
+                    <th>TRUCK OWNER</th>
+                    <th>TRUCK NO.</th>
+                    <th>WEIGHT</th>
+                    <th>PRODUCT</th>
+                    <th>QUANTITY</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for purchase_return in pr %}
+                <tr>
+
+                    <td>{{ purchase_return.purchase_return_date }}</td>
+                    <td>{{ purchase_return.warehouse }}</td>
+                    <td>{{ purchase_return.supplier }}</td>
+                    <td>{{ purchase_return.truck_owner }}</td>
+                    <td>{{ purchase_return.truck_no }}</td>
+                    <td> {{ purchase_return.weight }}</td>
+                    <td>
+                        {% for i in prhp %}
+                        {% if purchase_return == i.purchase_return %}
+                        {{ i.product }}<br>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for i in prhp %}
+                        {% if purchase_return == i.purchase_return %}
+                        {{ i.qty }}<br>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                            data-target="#deleteModal{{ purchase_return.id }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+
+                </tr>
+                <!-- Modal Delete Purchase-->
+                <div class="modal fade" id="deleteModal{{ purchase_return.id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="POST" action="{% url 'delete_purchase_return' purchase_return.id %}">
+                            {% csrf_token %}
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this purchase entry?<br>
+                                    Date : <b>{{ purchase_return.purchase_date }}</b><br>
+                                    Warehouse : <b>{{ purchase_return.warehouse }}</b><br>
+                                    Supplier : <b>{{ purchase_return.supplier }}</b><br>
+                                    <ul>
+                                        {% for prod in prhp %}
+                                        {% if prod.purchase_return == purchase_return %}
+                                        <li> {{ prod.product }} {{ prod.qty }}</li>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <p></p>
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

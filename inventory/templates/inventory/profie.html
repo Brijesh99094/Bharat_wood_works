@@ -1,0 +1,412 @@
+{% extends 'inventory/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+{% if email.role == 'Customer' %}
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"><a style="color: black;" href="{% url 'users' %}"><i class="fa  fa-chevron-circle-left fa-6"
+            aria-hidden="true"></i></a>{{ email.role }} Profile</h1>
+    </div>
+
+    <form method="POST">{% csrf_token %}
+      <div class="container">
+        {% include 'flash/_flash_messages.html' %}
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Username</label>
+          {{ form.customer_name}}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Email</label>
+          <div hidden>{{ form.account  }}</div>
+          <select name="account" class="custom-select">
+            <option value="{{ b.account.id }}" selected>{{ b.account }}</option>
+          </select>
+
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Company</label>
+          {{ form.company }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">GST_no.</label>
+          {{ form.gst_no }}
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Address</label>
+          {{ form.address }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Area</label>
+          {{ form.area }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Phone</label>
+          {{ form.phone }}
+        </div>
+      </div>
+      {% for field in form %}
+
+      <p>
+        {% for error in field.errors %}
+        <small style="color: red;">{{ field.label_tag }} {{ field }} {{ error }}</small>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action">Add</button>
+      <button class="btn btn-outline-danger mb-3 px-4" type="reset" name="action" value="">Clear</button>
+
+    </form>
+  </div>
+</div>
+
+
+{% elif email.role == 'Dealer'  %}
+<p>{{ email.role }}Profile</p>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"><a style="color: black;" href="{% url 'users' %}"><i class="fa  fa-chevron-circle-left fa-6"
+            aria-hidden="true"></i></a>{{ email.role }} Profile</h1>
+    </div>
+
+    <form method="POST">{% csrf_token %}
+      <div class="container">
+        {% include 'flash/_flash_messages.html' %}
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Username</label>
+          {{ form.dealer_name}}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Email</label>
+          <div hidden>{{ form.account  }}</div>
+          <select name="account" class="custom-select">
+            <option value="{{ b.account.id }}" selected>{{ b.account }}</option>
+          </select>
+
+
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Company</label>
+          {{ form.company }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Address</label>
+          {{ form.address }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Contact-person</label>
+          {{ form.contact_person }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Area</label>
+          {{ form.area }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Phone</label>
+          {{ form.phone }}
+        </div>
+      </div>
+
+      {% for field in form %}
+
+      <p>
+        {% for error in field.errors %}
+        <small style="color: red;">{{ field.label_tag }} {{ field }} {{ error }}</small>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action">Add</button>
+      <button class="btn btn-outline-danger mb-3 px-4" type="reset" name="action" value="">Clear</button>
+
+    </form>
+  </div>
+</div>
+
+{% elif email.role == 'Supervisor'  %}
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"><a style="color: black;" href="{% url 'users' %}"><i class="fa  fa-chevron-circle-left fa-6"
+            aria-hidden="true"></i></a>{{ email.role }} Profile</h1>
+    </div>
+
+    <form method="POST">{% csrf_token %}
+      <div class="container">
+        {% include 'flash/_flash_messages.html' %}
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Username</label>
+          {{ form.supervisor_name}}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Email</label>
+          <div hidden>{{ form.account  }}</div>
+          <select name="account" class="custom-select">
+            <option value="{{ b.account.id }}" selected>{{ b.account }}</option>
+          </select>
+
+
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">date_joined</label>
+          {{ form.date_joined }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Address</label>
+          {{ form.address }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Area</label>
+          {{ form.area }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Phone</label>
+          {{ form.phone }}
+        </div>
+      </div>
+
+
+      {% for field in form %}
+
+      <p>
+        {% for error in field.errors %}
+        <small style="color: red;">{{ field.label_tag }} {{ field }} {{ error }}</small>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action">Add</button>
+      <button class="btn btn-outline-danger mb-3 px-4" type="reset" name="action" value="">Clear</button>
+
+    </form>
+  </div>
+</div>
+<!-- Assigned Warehouse -->
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Assigned Warehouses & Companies</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table table-striped table-borderless" data-toggle="table" data-search="true"
+          data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true">
+          <thead>
+            <tr>
+              <th>Warehouse</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rec in shw %}
+            <tr>
+              <td>{{ rec.warehouse }}</td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="table table-striped table-borderless" data-toggle="table" data-search="true"
+          data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true">
+          <thead>
+            <tr>
+              <th>Company</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for recc in shc %}
+            <tr>
+              <td>{{ recc.company }}</td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+    <a href="{% url 'update_assignment' b.id %}" class="btn btn-outline-success mb-3 mt-3 px-4">Edit Warehouse &
+      Companies</a>
+  </div>
+</div>
+
+
+
+
+{% elif email.role == 'Company'  %}
+
+
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2"><a style="color: black;" href="{% url 'users' %}"><i class="fa  fa-chevron-circle-left fa-6"
+            aria-hidden="true"></i></a>{{ email.role }}Profile</h1>
+    </div>
+
+    <form method="POST" action>{% csrf_token %}
+      <div class="container">
+        {% include 'flash/_flash_messages.html' %}
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Username</label>
+          {{ form.company_name}}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Email</label>
+          <div hidden>{{ form.account  }}</div>
+          <select name="account" class="custom-select">
+            <option value="{{ b.account.id }}" selected>{{ b.account }}</option>
+          </select>
+
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">date_joined</label>
+          {{ form.date_joined }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Address</label>
+          {{ form.address }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Area</label>
+          {{ form.gst_no }}
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom04" class="font-weight-bold">Phone</label>
+          {{ form.phone }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 mb-3">
+          <label for="validationCustom01" class="font-weight-bold">Area</label>
+          {{ form.area }}
+        </div>
+      </div>
+
+
+      {% for field in form %}
+
+      <p>
+        {% for error in field.errors %}
+        <small style="color: red;">{{ field.label_tag }} {{ field }} {{ error }}</small>
+        {% endfor %}
+      </p>
+      {% endfor %}
+      <button class="btn btn-outline-success mb-3 px-4" type="submit" name="action">Add</button>
+      <button class="btn btn-outline-danger mb-3 px-4" type="reset" name="action" value="">Clear</button>
+
+    </form>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Plants</h1>
+    </div>
+
+    <table class="table table-striped table-borderless" data-toggle="table" data-search="true" data-show-toggle="true"
+      data-show-fullscreen="true" data-show-columns="true">
+      <thead>
+        <tr>
+          <th>Plant</th>
+          <th>Area</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for rec in plant %}
+        <tr>
+          <td>{{ rec.plant_name}}</td>
+          <td>{{ rec.area}}</td>
+
+
+        </tr>
+
+        <!-- Modal Delete Purchase-->
+        <div class="modal fade" id="deleteModal{{ rec.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <form method="POST" action="{% url 'delete_assigned_plant' rec.id %}">
+              {% csrf_token %}
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Delete Plant ?<br>
+                  Plant_name : <b>{{ rec.plant_name }}</b><br>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <p></p>
+                  <input type="submit" value="Delete" class="btn btn-danger">
+                </div>
+              </div>
+          </div>
+
+          </form>
+      </tbody>
+      {% endfor %}
+    </table>
+    <a href="{% url 'update_plant' b.id %}" class="btn btn-outline-success mb-3 mt-3 px-4">Edit Plants</a>
+  </div>
+</div>
+
+{% else %}
+i'm captain jack sparrow
+{% endif %}
+
+
+
+
+{% endblock %}

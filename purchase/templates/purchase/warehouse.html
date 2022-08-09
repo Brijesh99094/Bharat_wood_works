@@ -1,0 +1,95 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+<div class="card mb-4">
+    <div class="card-body">
+        {% include 'flash/_flash_messages.html' %}
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Add Warehouse</h1>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-sm-6 mb-3">
+                    <label class="font-weight-bold">Name</label>
+                    <input type="text" class="form-control" name="warehouse_name" required>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="font-weight-bold">Area</label>
+                    {{ warehouseform.area }}
+                </div>
+            </div>
+            <input type="submit" value="Add" class="btn btn-outline-success mb-3 px-4">
+        </form>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">All Warehouses</h1>
+        </div>
+        <table class="table table-striped table-borderless" data-toggle="table" data-search="true"
+            data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true">
+            <thead>
+
+                <tr>
+                    <th>NAME</th>
+                    <th>AREA</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ware in warehouse_data %}
+                <tr>
+                    <td>{{ware.warehouse_name}}</td>
+                    <td>{{ware.area}}</td>
+                    <td>
+                        <a href="#" class="btn btn-outline-info" data-toggle="modal"
+                            data-target="#modaledit{{ ware.id }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                    </td>
+                </tr>
+                <!-- Modal Edit Warehouse-->
+                <div id="modaledit{{ ware.id }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Warehouse</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{% url 'update_warehouse' ware.id %}">{% csrf_token %}
+                                    <div class="form-row">
+                                        <strong> Old values: </strong><br>
+                                        <b>Name</b> : {{ ware.warehouse_name }} <br>
+                                        <b>Area</b> : {{ ware.area }} <br>
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="font-weight-bold">Name</label>
+                                            <input type="text" class="form-control" name="warehouse_name"
+                                                value="{{ ware.warehouse_name }}" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="font-weight-bold">Area</label>
+                                            {{ warehouseform.area }}
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline-success mb-3 px-4" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Delete Warehouses-->
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

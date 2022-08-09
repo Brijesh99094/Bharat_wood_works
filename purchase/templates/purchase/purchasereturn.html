@@ -1,0 +1,171 @@
+{% extends 'inventory/main.html' %}
+{% block content %}
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Purchase return </h1>
+            <h4>purchase id : {{ pid  }}</h3>
+        </div>
+        {% include 'flash/_flash_messages.html' %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Date</label>
+                    <input type="date" name="purchase_return_date" class="form-control" required>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Warehouse</label>
+                    <select class="custom-select" name="warehouse">
+                        <option value="{{ pid.warehouse }}" selected>{{ pid.warehouse }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Supplier</label>
+                    <select class="custom-select" name="supplier">
+                        <option value="{{ pid.supplier }}" selected>{{ pid.supplier }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Truck Owner</label>
+                    <select class="custom-select" name="truck_owner">
+                        <option>------------- </option>
+                        {% for i in t1 %}
+                        <option value="{{ i.co_name }}">{{ i.co_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Truck Number</label>
+                    <input type="text" name="truck_no" class="form-control">
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <label class="font-weight-bold">Weight</label>
+                    <input type="text" name="weight" class="form-control">
+                </div>
+            </div>
+            <!--{% for field in purchase_return  %}
+            <p>
+                {% for error in field.errors %}
+                    <small style="color: red;">{{ error }}</small>
+                {% endfor %}
+            </p>
+            {% endfor %}-->
+            <button class="btn btn-outline-danger mb-3 px-4" type="reset">Clear</button>
+            <button class="btn btn-outline-success mb-3 px-4" type="submit">Add</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">All Purchase Returns</h1>
+        </div>
+        <table class="table table-striped table-borderless">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>WAREHOUSE</th>
+                    <th>SUPPLIER</th>
+                    <th>TRUCK OWNER</th>
+                    <th>TRUCK NO.</th>
+                    <th>WEIGHT</th>
+                    <th>PRODUCT</th>
+                    <th>QUANTITY</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for purchase_return in pr %}
+                <tr>
+
+                    <td>{{ purchase_return.purchase_return_date }}</td>
+                    <td>{{ purchase_return.warehouse }}</td>
+                    <td>{{ purchase_return.supplier }}</td>
+                    <td>{{ purchase_return.truck_owner }}</td>
+                    <td>{{ purchase_return.truck_no }}</td>
+                    <td> {{ purchase_return.weight }}</td>
+                    <td>
+                        {% for i in prhp %}
+                        {% if purchase_return == i.purchase_return %}
+                        {{ i.product }}<br>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for i in prhp %}
+                        {% if purchase_return == i.purchase_return %}
+                        {{ i.qty }}<br>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'updatepurchasereturn' purchase_return.id  %}" class="btn btn-outline-info">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                            data-target="#deleteModal{{ purchase_return.id }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+
+                </tr>
+                <!-- Modal Delete Purchase-->
+                <div class="modal fade" id="deleteModal{{ purchase_return.id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="POST" action="{% url 'delete_purchase_return' purchase_return.id %}">
+                            {% csrf_token %}
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this purchase entry?<br>
+                                    Date : <b>{{ purchase_return.purchase_date }}</b><br>
+                                    Warehouse : <b>{{ purchase_return.warehouse }}</b><br>
+                                    Supplier : <b>{{ purchase_return.supplier }}</b><br>
+                                    <ul>
+                                        {% for prod in prhp %}
+                                        {% if prod.purchase_return == purchase_return %}
+                                        <li> {{ prod.product }} {{ prod.qty }}</li>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <p></p>
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
