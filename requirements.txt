@@ -67,7 +67,6 @@ pyflakes==2.1.1
 Pygments==2.6.1
 PyPDF2==1.26.0
 Pyphen==0.10.0
-pypiwin32==223
 python-bidi==0.4.2
 python-dateutil==2.8.1
 pytz==2020.1
