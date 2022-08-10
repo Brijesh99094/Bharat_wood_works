@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import django_heroku
+
 from django.contrib.messages import constants as messages
 import os
 
@@ -152,4 +152,3 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-django_heroku.settings(locals())
