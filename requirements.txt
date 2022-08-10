@@ -65,7 +65,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 mysql-connector-python==8.0.21
-mysqlclient @ file:///C:/Users/Brijesh%20prajappati/Downloads/mysqlclient-2.0.3-cp38-cp38-win_amd64.whl
+
 numpy==1.19.0
 opencv-python==4.4.0.46
 openpyxl==3.0.5
