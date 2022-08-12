@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
 from django.contrib.messages import constants as messages
 import os
 
@@ -26,7 +27,7 @@ SECRET_KEY = '96tr!plb)_y5jl_$f2h0rc+_vy@*np)q@oj=#qs@hkh+riw3*b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bharatwoodworks.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -150,3 +151,4 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
