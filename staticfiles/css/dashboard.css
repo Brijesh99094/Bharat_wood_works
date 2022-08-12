@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css?family=Acme|Lobster|Patua+One|Rubik|Sniglet|Merriweather Sans");
+
+:root {
+    --Sniglet-font: "Sniglet", cursive;
+    --Rubik: "Rubik", cursive;
+    --Patua: "Patua One", cursive;
+    --Lobster: "lobster", cursive;
+    --Merriweather: "Merriweather Sans", cursive;
+    --light-black: #2e2c2caf;
+    --bggradient: linear-gradient(to bottom, #ff5733, #ffffff);
+    --light-gray: rgba(255, 255, 255, 0.877);
+}
+
+nav a {
+    font-family: var(--Sniglet-font);
+    font-size: 1.1em;
+    color: white;
+}
+
+nav {
+    background-color: darkslategrey;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ddd;
+}
+
+.container .head {
+    font-family: var(--Patua);
+    color: darkslategrey;
+}
+
+.card-title,
+.card-text {
+    font-family: var(--Patua);
+    color: darkslategrey;
+}
+
+p {
+    font-family: var(--Merriweather);
+    font-size: large;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+    }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+
+.container-fluid .row #sidebarMenu a {
+    padding: 10px;
+    display: block;
+    color: darkslategrey;
+    text-decoration: none;
+}
+
+tr,
+td {
+    color: darkslategrey;
+
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.container-fluid .row #sidebarMenu a:hover {
+    color: #008080;
+    background-color: #ddd !important;
+}
+
+.container-fluid .row #sidebarMenu a.active,
+.container-fluid .row #sidebarMenu a:focus,
+a[aria-expanded="true"] {
+    color: #008080;
+    background-color: #ddd !important;
+}
+
+main {
+    font-family: var(--Merriweather);
+}

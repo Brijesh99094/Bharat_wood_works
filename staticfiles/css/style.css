@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Acme|Lobster|Patua+One|Rubik|Sniglet|Merriweather Sans");
+
+:root {
+    --Sniglet-font: "Sniglet", cursive;
+    --Rubik: "Rubik", cursive;
+    --Patua: "Patua One", cursive;
+    --Lobster: "lobster", cursive;
+    --Merriweather: "Merriweather Sans", cursive;
+    --light-black: #2e2c2caf;
+    --bggradient: linear-gradient(to bottom, #ff5733, #ffffff);
+    --light-gray: rgba(255, 255, 255, 0.877);
+}
+
+nav a {
+    font-family: var(--Sniglet-font);
+    font-size: 1.1em;
+    color: white;
+}
+
+nav {
+    background-color: darkslategrey;
+}
+
+
+
+.BWW {
+    font-family: var(--Patua);
+    color: #ff5733;
+
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ddd;
+}
+
+#carouselExampleCaptions {
+    font-family: var(--Rubik);
+}
+
+
+.container .head {
+    font-family: var(--Patua);
+    color: darkslategrey;
+}
+
+.card-title,
+.card-text {
+    font-family: var(--Patua);
+    color: darkslategrey;
+}
+
+p {
+    font-family: var(--Merriweather);
+    font-size: large;
+}
+
+.text-uppercase {
+    font-family: var(--Patua);
+}
+
+.jumbotron.jumbotron-fluid {
+    background: darkslategrey;
+    background-size: 100% 100%;
+}
+
+.container-fluid .row #sidebarMenu a,
+tr,
+td {
+    color: darkslategrey;
+
+}
+
+.container-fluid .row #sidebarMenu a:hover {
+    color: #008080;
+    background-color: #ddd !important;
+}
+
+.container-fluid .row #sidebarMenu a:active,
+.container-fluid .row #sidebarMenu a:visited,
+.container-fluid .row #sidebarMenu a:focus {
+    color: #008080;
+    background-color: #ddd !important;
+}
+
+main {
+    font-family: var(--Merriweather);
+}
+
+
+
+
+.flex-center {
+    color: #fefefe;
+}
