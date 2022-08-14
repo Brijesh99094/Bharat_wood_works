@@ -37,13 +37,12 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/',SetNewPasswordView.as_view(),name='password_reset_confirm'),
 
 #internal
-      
-    # static files 
-    if setting.DEBUG:
-        urlpatterns += static(settings.STATIC_URL , document_root=settings.STATIC_ROOT)
+     
+]
+
+if setting.DEBUG:
+    urlpatterns += static(settings.STATIC_URL , document_root=settings.STATIC_ROOT)
     
       
-
-]
 
 
