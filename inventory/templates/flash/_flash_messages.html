@@ -1,23 +1,22 @@
+{% if messages %} {% for message in messages %}
+
+<div
+  id="msg "
+  class="alert {{message.tags}} alert-dismissible fade show"
+  role="alert"
+>
+  {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
 <script>
-
-   {% if messages %} {% for message in messages %}
-
-
-     alertify.set("notifier", "position", "top-right");
-     alertify.success("{{ message }}");
-
-
-  <div
-     id="msg "
-     class="alert {{message.tags}} alert-dismissible fade show"
-     role="alert"
-   >
-     {{ message }}
-     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-       <span aria-hidden="true">&times;</span>
-     </button>
-   </div>
-
-
-   {% endfor %} {% endif %}
+  window.setTimeout(function () {
+    $(".alert").click(function () {
+      $(this).remove();
+    });
+  }, 4000);
 </script>
+
+{% endfor %} {% endif %}
