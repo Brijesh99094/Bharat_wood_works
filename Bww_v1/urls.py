@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls.static import static
 from inventory.views import RequestResetEmailView,SetNewPasswordView
 
 urlpatterns = [
@@ -36,9 +37,12 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/',SetNewPasswordView.as_view(),name='password_reset_confirm'),
 
 #internal
-      
-      
-
+     
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL , document_root=settings.STATIC_ROOT)
+    
+      
 
 
